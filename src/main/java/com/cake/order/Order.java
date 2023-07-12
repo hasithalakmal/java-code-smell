@@ -1,6 +1,6 @@
-package com.cake;
+package com.cake.order;
 
-class Order {
+public class Order {
     private String orderId;
     private String productName;
     private int quantity;

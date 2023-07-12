@@ -1,8 +1,8 @@
-package com.cake;
+package com.cake.order;
 
 import java.util.ArrayList;
 import java.util.List;
-class OrderProcessor {
+public class OrderProcessor {
     private List<Order> orders;
 
     public OrderProcessor() {
@@ -11,6 +11,10 @@ class OrderProcessor {
 
     public void addOrder(Order order) {
         orders.add(order);
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public void printOrderSummary() {
