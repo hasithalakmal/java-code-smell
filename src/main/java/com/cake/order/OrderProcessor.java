@@ -21,6 +21,10 @@ public class OrderProcessor {
         double totalBuyAmount = calculateTotalBuyAmount();
         double totalSellAmount = calculateTotalSellAmount();
 
+        printOrderSummary(totalBuyAmount, totalSellAmount);
+    }
+
+    private void printOrderSummary(double totalBuyAmount, double totalSellAmount) {
         System.out.println("Order Summary:");
         System.out.println("Total Buy Amount: " + totalBuyAmount);
         System.out.println("Total Sell Amount: " + totalSellAmount);
