@@ -2,6 +2,8 @@ package com.cake.order;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+
 public class OrderProcessor {
     private List<Order> orders;
 
@@ -25,7 +27,7 @@ public class OrderProcessor {
     private Summary generateSummary() {
         Summary summary = new Summary();
         summary.setTotalBuyAmount(calculateTotalBuyAmount());
-        summary.setTotalBuyAmount(calculateTotalSellAmount());
+        summary.setTotalSellAmount(calculateTotalSellAmount());
         return summary;
     }
 
@@ -36,25 +38,18 @@ public class OrderProcessor {
     }
 
     private double calculateTotalBuyAmount() {
-        double totalBuyAmount = 0.0;
-        for (Order order : orders) {
-            if (isBuyOrder(order)) {
-                totalBuyAmount += calculateOrderAmount(order);
-            }
-        }
-        return totalBuyAmount;
+        return getSum(this::isBuyOrder);
     }
 
     private double calculateTotalSellAmount() {
-        double totalSellAmount = 0.0;
-        for (Order order : orders) {
-            if (isSellOrder(order)) {
-                totalSellAmount += calculateOrderAmount(order);
-            }
-        }
-        return totalSellAmount;
+        return getSum(this::isSellOrder);
     }
 
+    private double getSum(Predicate<Order> orderType) {
+        return orders.stream().filter(orderType).mapToDouble(this::calculateOrderAmount).sum();
+    }
+
+    // If need we could move these methods to order object itself
     private boolean isBuyOrder(Order order) {
         return order.getProductName().equals("ABC") && order.getQuantity() > 0;
     }
