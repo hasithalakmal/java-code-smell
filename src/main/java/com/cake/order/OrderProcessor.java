@@ -18,10 +18,18 @@ public class OrderProcessor {
     }
 
     public void printOrderSummary() {
-        double totalBuyAmount = calculateTotalBuyAmount();
-        double totalSellAmount = calculateTotalSellAmount();
+        Summary summary = generateSummary();
+        double totalBuyAmount = summary.getTotalBuyAmount();
+        double totalSellAmount = summary.getTotalSellAmount();
 
         printOrderSummary(totalBuyAmount, totalSellAmount);
+    }
+
+    private Summary generateSummary() {
+        Summary summary = new Summary();
+        summary.setTotalBuyAmount(calculateTotalBuyAmount());
+        summary.setTotalBuyAmount(calculateTotalSellAmount());
+        return summary;
     }
 
     private void printOrderSummary(double totalBuyAmount, double totalSellAmount) {
