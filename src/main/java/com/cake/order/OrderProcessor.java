@@ -19,10 +19,7 @@ public class OrderProcessor {
 
     public void printOrderSummary() {
         Summary summary = generateSummary();
-        double totalBuyAmount = summary.getTotalBuyAmount();
-        double totalSellAmount = summary.getTotalSellAmount();
-
-        printOrderSummary(totalBuyAmount, totalSellAmount);
+        printOrderSummary(summary);
     }
 
     private Summary generateSummary() {
@@ -32,10 +29,10 @@ public class OrderProcessor {
         return summary;
     }
 
-    private void printOrderSummary(double totalBuyAmount, double totalSellAmount) {
+    private void printOrderSummary(Summary summary) {
         System.out.println("Order Summary:");
-        System.out.println("Total Buy Amount: " + totalBuyAmount);
-        System.out.println("Total Sell Amount: " + totalSellAmount);
+        System.out.println("Total Buy Amount: " + summary.getTotalBuyAmount());
+        System.out.println("Total Sell Amount: " + summary.getTotalSellAmount());
     }
 
     private double calculateTotalBuyAmount() {
