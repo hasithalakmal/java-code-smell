@@ -38,14 +38,14 @@ public class OrderProcessor {
     }
 
     private double calculateTotalBuyAmount() {
-        return getSum(this::isBuyOrder);
+        return calculateOrderSum(this::isBuyOrder);
     }
 
     private double calculateTotalSellAmount() {
-        return getSum(this::isSellOrder);
+        return calculateOrderSum(this::isSellOrder);
     }
 
-    private double getSum(Predicate<Order> orderType) {
+    private double calculateOrderSum(Predicate<Order> orderType) {
         return orders.stream().filter(orderType).mapToDouble(this::calculateOrderAmount).sum();
     }
 
